@@ -1,0 +1,53 @@
+.container {  display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". cluenotes"
+      ". cluenotes"
+      ". cluenotes";
+  }
+  
+  .cluenotes { grid-area: cluenotes; }
+  
+div {
+    border: 1px solid black
+}
+
+h5 {
+    font-family: 'Special Elite', georgia, serif;
+    font-size: 0.8em;
+}
+
+.isHidden {
+    display: none
+}
+
+
+p {
+    font-family: 'Special Elite', georgia, serif;
+    font-size: 1rem;
+    width: 10rem;   
+    margin: 0rem 0.5rem;
+    padding: 0.05rem 0rem;
+    /* align-items:center; */
+    border: none;
+    /* background-color: chocolate; */
+    color: rgb(90, 66, 212);
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  p:hover, p:focus{
+    background-color: rgb(255, 255, 255);
+    display: inline-block;
+    text-align: center;
+    transform: translate3D(0,-1px,0) scale(1.05);
+}
+
+.strikethrough {
+    text-decoration:0.2em solid red line-through; 
+  }
