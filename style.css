@@ -1,53 +1,117 @@
 .container {  display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: 0.5fr 0.9fr 1.2fr 1.4fr 1.4fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-      ". cluenotes"
-      ". cluenotes"
-      ". cluenotes";
+      "cardsOnHand cluenotes"
+      "diceroll cluenotes"
+      "suspect cluenotes"
+      "suspicionbox cluenotes"
+      "showcards cluenotes";
   }
   
-  .cluenotes { grid-area: cluenotes; }
+  .cluenotes { grid-area: cluenotes; text-align: center; }
   
-div {
-    border: 1px solid black
+  .cardsOnHand { grid-area: cardsOnHand; }
+  
+  .diceroll { grid-area: diceroll; }
+  
+  .suspect { grid-area: suspect; }
+  
+  .suspicionbox { grid-area: suspicionbox; }
+
+  .showcards { grid-area: showcards; }
+
+.cluenotes.h5 {
+    width: 15rem;
+    height: 15rem;
+}
+.cardsOnHand {
+    display: inline-flex;
+    justify-content: left;
+    text-align: center;
+    margin: 1vw;
+    width: 60vw;
 }
 
+.suspect, .wincontainer, .showcards {
+    display: flex;
+    justify-content: left;
+    text-align: center;
+    width: 60vw;
+}
+
+.cardsOnHand-indiv, .suspect-char, .suspect-weapon, .showcards-card, .char, .weapon, .room {
+    flex-basis: 2em;
+    height: 6em;
+    border: 1px solid midnightblue;
+    background: #FBFBFB;
+    box-shadow: 2px 2px 4px grey;
+    display: grid;
+    border-radius: 10%;
+    grid-template-columns: .2em 3.6em .2em;
+    grid-template-rows: 1em 4em 1em;
+    grid-column-gap: 0em;
+    grid-row-gap: 0em;
+    grid-template-areas:
+      ". . ."
+      ". center ."
+      ". . ."
+}
+
+.center {
+    grid-area: center;
+  }
+
+  button {
+    border-radius: 12px;
+      transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: #658dd6; /* Green */
+  color: white;
+}
+
+
+/* div {
+  border: 1px solid black;
+} */
+
 h5 {
-    font-family: 'Special Elite', georgia, serif;
-    font-size: 0.8em;
+  font-family: "Special Elite", georgia, serif;
+  font-size: 0.8em;
 }
 
 .isHidden {
-    display: none
+  display: none;
 }
 
-
 p {
-    font-family: 'Special Elite', georgia, serif;
-    font-size: 1rem;
-    width: 10rem;   
-    margin: 0rem 0.5rem;
-    padding: 0.05rem 0rem;
-    /* align-items:center; */
-    border: none;
-    /* background-color: chocolate; */
-    color: rgb(90, 66, 212);
-    text-align: center;
-    border-radius: 4px;
-    display: inline-block;
-    cursor: pointer;
-  }
+  font-family: "Special Elite", georgia, serif;
+  font-size: 1rem;
+  width: 10rem;
+  margin: 0rem 0.5rem;
+  padding: 0.05rem 0rem;
+  /* align-items:center; */
+  border: none;
+  /* background-color: chocolate; */
+  color: rgb(90, 66, 212);
+  text-align: center;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
 
-  p:hover, p:focus{
-    background-color: rgb(255, 255, 255);
-    display: inline-block;
-    text-align: center;
-    transform: translate3D(0,-1px,0) scale(1.05);
+p:hover,
+p:focus {
+  background-color: rgb(255, 255, 255);
+  display: inline-block;
+  text-align: center;
+  transform: translate3D(0, -1px, 0) scale(1.05);
 }
 
 .strikethrough {
-    text-decoration:0.2em solid red line-through; 
-  }
+  text-decoration: 0.2em solid red line-through;
+}

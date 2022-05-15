@@ -80,7 +80,8 @@ const distributeDeck = () => { //* split cards according to num of players
         const h5 = document.createElement("h5")
         h5.className = "center"
         h5.textContent = cardsOnHand[`player0`][i]
-        div.appendChild(card.appendChild(h5))
+        div.appendChild(card)
+        card.appendChild(h5)
     }
     console.log("cardsOnHand",cardsOnHand)
     splitCards();
@@ -130,10 +131,16 @@ const playerActions = () => {
            confirmSuspect()
            break;
         case "player1":
-            rollDice();
+            document.getElementById("continue-btn").disabled = true
+            if(document.querySelectorAll(".continue-suspect").length === 1) {
+              document.querySelector(".continue-suspect").classList.remove("isHidden")
+              document.getElementById("continue-suspect").disabled = false
+            }
+        rollDice();
             break;
         case "player2":
             rollDice();
+            document.getElementById("continue-btn").disabled = true
             break;
     }
 }
@@ -150,18 +157,29 @@ const rollDice = () => {
             }
         }
     }   
-    if (game.players[0] === "player0") {suspect()} else {
+    if (game.players[0] === "player0") {
+      if (document.querySelectorAll(".continue-suspect").length === 1) {
+        document.querySelector(".continue-suspect").classList.add("isHidden")
+        document.getElementById("continue-btn").disabled = true
+      }
+      suspect()} else {
         if(document.querySelectorAll (".continue-suspect").length === 0)
         {const button = document.createElement("button")
         document.querySelector(".diceroll").appendChild(button)
         button.textContent = "continue"
+        button.setAttribute("id","continue-suspect")
         button.className = "continue-suspect"} 
         else {
-            if (document.querySelector(".continue-suspect").classList.contains("isHidden")){
-                document.querySelector(".continue-suspect").classList.toggle("isHidden")
-            }
+            // if (document.querySelector(".continue-suspect").classList.contains("isHidden")){
+            //     document.querySelector(".continue-suspect").classList.toggle("isHidden")
+            // }
+            document.getElementById("continue-suspect").disabled = false;
         }
-        document.querySelector(".continue-suspect").addEventListener("click", comSuspect)
+        document.querySelector(".continue-suspect").addEventListener("click", () => {
+          document.getElementById("continue-suspect").disabled = true;
+          document.getElementById("continue-btn").disabled = false;
+          comSuspect()}
+          )
     }
 
 }
@@ -202,7 +220,8 @@ const confirmSuspect = () => {
     const button = document.createElement("button");
     button.textContent = "confirm suspect";
     button.className = "confirmsuspect-btn";
-    document.querySelector(".suspect").appendChild(div.appendChild(button));
+    document.querySelector(".suspect").appendChild(div)
+    div.appendChild(button);
     const suspicionbox = document.createElement("div");
     suspicionbox.className = "suspicionbox";
     document.querySelector(".app").appendChild(suspicionbox);
@@ -215,6 +234,7 @@ const confirmSuspect = () => {
     const continuebtn = document.createElement("button")
     continuebtn.className = "continue-btn"
     continuebtn.classList.add("isHidden")
+    continuebtn.setAttribute("id", "continue-btn")
     continuebtn.textContent = "next player"
     suspicionbox.appendChild(continuebtn)
     const accusebtn = document.createElement("button")
@@ -223,7 +243,8 @@ const confirmSuspect = () => {
     suspicionbox.appendChild(accusebtn)
   }
 handleClick()
-document.querySelector(".continue-btn").addEventListener("click", nextPlayer)
+document.querySelector(".continue-btn").addEventListener("click", 
+  nextPlayer)
 document.querySelector(".accuse-btn").addEventListener("click", () => {
     if (document.querySelectorAll(".wincontainer").length === 0) {
         accuseFinal()
@@ -240,6 +261,7 @@ const handleClick = () => {
         document.querySelectorAll(".suspect-charselected").length === 1 &&
         document.querySelectorAll(".suspect-weaponselected").length === 1
       ) {
+        document.getElementById("continue-btn").disabled = false;
         currentPlayer.currentSuspicion.char = document.querySelector(
           ".suspect-charselected"
         ).textContent;
@@ -284,12 +306,10 @@ const nextPlayer = () => {
         currentPlayer.currentPlayerTurn = 1;
         playerActions()
     } else {
-        document.querySelector(".continue-btn").classList.toggle("isHidden")
+        document.querySelector(".continue-suspect").classList.remove("isHidden")
         currentPlayer.currentPlayerTurn = 2
         playerActions()
     }
-    
-   
     // console.log("currentPlayerTurn",currentPlayer.currentPlayerTurn)
 }
 
@@ -326,7 +346,9 @@ const checkOther = () => {
                         return true
             }
         }
-        document.querySelector(".continue-btn").classList.toggle("isHidden")
+        if(!document.querySelector(".continue-btn").classList.contains("isHidden"))
+         {document.querySelector(".continue-btn").classList.toggle("isHidden")}
+        
         currentPlayer.cardShownBy = "no one";
         currentPlayer.cardShown = "";
         if (currentPlayer.cardShownBy = "no one") {
@@ -357,7 +379,7 @@ const checkOther = () => {
 }
 }
 const comSuspect = () => {
-    document.querySelector(".continue-suspect").classList.toggle("isHidden")
+  if(!document.querySelector(".continue-btn").classList.contains("isHidden")) {document.querySelector(".continue-btn").classList.toggle("isHidden")}
     const i = currentPlayer.currentPlayerTurn
     const randomChar = Math.floor(Math.random() * possibleCards[i][0].length);
     const randomWeapon = Math.floor(Math.random() * possibleCards[i][1].length);
@@ -371,7 +393,9 @@ const comSuspect = () => {
     document.querySelector(
         ".suspect-results"
       ).textContent = `${currentPlayer.cardShownBy} showed ${game.players[0]} a card` 
-    document.querySelector(".continue-btn").classList.toggle("isHidden")
+    if(document.querySelector(".continue-btn").classList.contains("isHidden")) {
+      document.querySelector(".continue-btn").classList.toggle("isHidden")
+    }
       return true
 }
 
@@ -383,7 +407,7 @@ const selectFromMyCards = () => {
         const div = document.createElement("div")
         div.className = "showcards"
         // div.textContent = "checking your deck now"
-        document.querySelector(".app").appendChild(div)
+        document.querySelector(".app").appendChild(div) 
     }
     const suspicion = currentPlayer.currentSuspicion
     const keys = Object.keys(suspicion)
@@ -420,7 +444,8 @@ const selectFromMyCards = () => {
         if (document.querySelector(".showcards").classList.contains("isHidden")) {
             document.querySelector(".showcards").classList.toggle("isHidden")
     }
-        showCards()
+    document.getElementById("continue-btn").disabled = true;
+    showCards()
     }
 }
 
@@ -453,6 +478,7 @@ const showCards = () => {
     .querySelector(".showcards-card-btn")
     .addEventListener("click", () => {
       if (document.querySelectorAll(".showthiscard").length === 1) {
+        document.getElementById("continue-btn").disabled = false;
         currentPlayer.cardShownBy = "player0";
         currentPlayer.cardShown =
           document.querySelector(".showthiscard").textContent;
@@ -461,7 +487,6 @@ const showCards = () => {
         ).textContent = `${currentPlayer.cardShownBy} showed ${game.players[0]} a card`;
         document.querySelector(".showcards").classList.add("isHidden");
       }
-      document.querySelector(".continue-btn").classList.toggle("isHidden")
     });
 };
 
@@ -501,7 +526,7 @@ const accuseFinal = () => {
         const playagain = document.createElement("button")
         playagain.textContent = "play again!"
         playagain.className = "playagain"
-        document.querySelector(".container").appendChild(playagain)
+        document.querySelector(".suspicionbox").appendChild(playagain)
         playagain.addEventListener("click", reset)
     })
 }
