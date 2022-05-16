@@ -26,35 +26,28 @@ The game is deployed on Vercel & you can play the game here: https://cluedo.verc
 Did some research on how the game was played but due to time constraints, I had to alter the game rules & game play quite a bit. 
 I would have planned out the steps in more detail & follow the time schedule more diligently. With good planning, I could avoid giving myself undue stress since I underestimated the time it would take and the difficulties I would face. 
 
+Glad that I still managed to make a minimum viable product despite the fact that I scrapped the codes and rewrote 
 
-# What I learnt & What I would do differently -  
-- Start small first & make sure the game code really works! 
-- Make it a habit to console.log consistently so you know that if something went wrong, it’s the last part you just added that is causing this bug
-- Could bounce off ideas with people and 
-- Try not to overcomplicate things 
-- Once I have to repeat the codes, I should think about finding a more concise method.
-- I re-wrote my code as my initial draft had many repetitive functions & in the proccess, i made my code more concise.
-
-- Throughout this project, I became more fluent in using vanilla JavaScript.
-
-
-Approach and Process
-What in my process and approach to this project would I do differently next time?
-
-What in my process and approach to this project went well that I would repeat next time?
-
---
+Note to self, to look for help earlier next time when i get stuck! 
 
 Code and Code Design
-What in my code and program design in the project would I do differently next time?
+What would I do differently next time?
+- Start small first & make sure the game code really works! 
+- Make it a habit to console.log consistently so you know that if something went wrong, it’s the last part you just added that is causing this bug
+- Try to have a clear flow & logic before starting & keep thinking of ways to simplify! Dont complicate things
 
-What in my code and program design in the project went well? Is there anything I would do the same next time?
+What went well?
+Initially this was 3 repetitive functions to randomly select the character, weapon and room cards in addition to another 3 functions of filtering & mapping the remaining cards. I realised that i could refactor my code such that it could be done in one for loop.
+<img width="1043" alt="image" src="https://user-images.githubusercontent.com/103851181/168573264-ed68573d-e578-41a0-8b62-f60275223c72.png">
 
-For each, please include code examples.
-
-Code snippet up to 20 lines.
-Code design documents or architecture drawings / diagrams.
-SEI Post Mortem
-What habits did I use during this unit that helped me?
-What habits did I have during this unit that I can improve on?
-How is the overall level of the course during this unit? (instruction, course materials, etc.)
+Things I would do the same next time: 
+Look through my codes with the mindset to improve consistently
+ 
+# SEI Post Mortem
+Habits I used during this unit that helped me: 
+- Took breaks to be refreshed & get back to it! 
+- Broke down my to-do list into mini parts to celebrate small wins 
+- Googled & ask around for help eventually
+Habits that I have during this unit that I can improve on:
+- Not looking for help when I get stuck until it's almost too late...
+- I need to comment on my codes more 
