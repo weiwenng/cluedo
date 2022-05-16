@@ -38,6 +38,7 @@ What would I do differently next time?
 
 What went well?
 Initially this was 3 repetitive functions to randomly select the character, weapon and room cards in addition to another 3 functions of filtering & mapping the remaining cards. I realised that i could refactor my code such that it could be done in one for loop.
+
 <img width="1043" alt="image" src="https://user-images.githubusercontent.com/103851181/168573264-ed68573d-e578-41a0-8b62-f60275223c72.png">
 
 Things I would do the same next time: 
