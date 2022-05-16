@@ -36,21 +36,15 @@ const possibleCards = [];
 const pickMurderCards = () => {
   //* to select the three cards randomly
   const cards = game.cards;
-  let suspect = cards.char[Math.floor(Math.random() * (cards.char.length - 1))];
-  let weapon =
-    cards.weapon[Math.floor(Math.random() * (cards.weapon.length - 1))];
-  let room = cards.room[Math.floor(Math.random() * (cards.room.length - 1))];
-  game.envelope = [suspect, weapon, room];
+  const keys = Object.keys(cards);
+  for (let i = 0; i < keys.length; i++) {
+    const item = cards[keys[i]][Math.floor(Math.random() * (cards[keys[i]].length - 1))]
+    game.envelope.push(item)
+    cards[keys[i]]
+    .filter((card) => card !== item)
+    .map((cards) => game.deck.push(cards));
+  }
   console.log("envelope", game.envelope);
-  cards.char
-    .filter((card) => card !== suspect)
-    .map((item) => game.deck.push(item));
-  cards.weapon
-    .filter((card) => card !== weapon)
-    .map((item) => game.deck.push(item));
-  cards.room
-    .filter((card) => card !== room)
-    .map((item) => game.deck.push(item));
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -86,9 +80,9 @@ const distributeDeck = () => {
   app.className = "app";
   const div = document.createElement("div");
   div.className = "cardsOnHand";
-  const h6 = document.createElement("h6")
-  h6.textContent = "your cards:"
-  app.appendChild(h6)
+  const h6 = document.createElement("h6");
+  h6.textContent = "your cards:";
+  app.appendChild(h6);
   app.appendChild(div);
   document.querySelector(".container").appendChild(app);
   for (let i = 0; i < cardsOnHand["player0"].length; i++) {
@@ -253,6 +247,7 @@ const suspect = () => {
 
 const confirmSuspect = () => {
   if (document.querySelectorAll(".confirmsuspect-btn").length === 0) {
+    //* create suspicion box to contain buttons for next player & final accusation
     const suspicionbox = document.createElement("div");
     suspicionbox.className = "suspicionbox";
     document.querySelector(".app").appendChild(suspicionbox);
@@ -281,10 +276,10 @@ const confirmSuspect = () => {
     suspicionbox.appendChild(accusebtn);
   }
 
-  handleClick();
-  document.querySelector(".continue-btn").addEventListener("click", nextPlayer);
+  handleClick(); //* for selecting one character & one weapon card to suspect
+  document.querySelector(".continue-btn").addEventListener("click", nextPlayer); //* next player button -> nextPlayer()
   document.querySelector(".accuse-btn").addEventListener("click", () => {
-    document.querySelector(".accuse-btn").classList.add("isHidden")
+    document.querySelector(".accuse-btn").classList.add("isHidden"); //* on click, hide the accuse button to prevent confusion
     if (document.querySelectorAll(".wincontainer").length === 0) {
       accuseFinal();
     }
@@ -637,45 +632,51 @@ const clueNotes = () => {
   const div = document.createElement("div");
   div.classList.add("cluenotes");
   document.querySelector(".container").appendChild(div);
-  instructions()
-  const notesTitle = document.createElement("h4")
-  notesTitle.textContent = "keep track here!"
-  div.appendChild(notesTitle)
+  instructions();
+  const notesTitle = document.createElement("h4");
+  notesTitle.textContent = "keep track here!";
+  div.appendChild(notesTitle);
   clueCards("char");
   clueCards("weapon");
   clueCards("room");
 };
 
 const instructions = () => {
-  const button = document.createElement("button")
-  button.className = "instructions-btn"
-  button.textContent = "Instructions"
-  const div = document.querySelector(".cluenotes")
-  div.appendChild(button)
-  const container = document.createElement("div")
-  container.classList.add("instructions-container", "isHidden")
-  div.appendChild(container)
-  const instructionsHeader = document.createElement("div")
-  instructionsHeader.className = "instructionsHeader"
-  const instructionsTitle = document.createElement("div")
-  instructionsTitle.textContent = "instructions"
-  const closebutton = document.createElement("button")
-  closebutton.className = "close-button"
-  closebutton.textContent = `X`
-  instructionsHeader.appendChild(instructionsTitle)
-  instructionsHeader.appendChild(closebutton)
-  container.appendChild(instructionsHeader)
-  const instructionsBody = document.createElement("div")
-  instructionsBody.className = "instructionsBody"
-  instructionsBody.textContent = "the idea of cluedo is go from room to room to eliminate people, places and weapons. roll dice to start game and enter a room. on each turn, you can select any one suspect & any one weapon. the suggestion will include the room you are in. you can click the accuse button at any time and select a who, what, where to accuse. Game ends once you click the check envelope button to check if your accusation was right!!"
-  container.appendChild(instructionsBody)
+  const button = document.createElement("button");
+  button.className = "instructions-btn";
+  button.textContent = "Instructions";
+  const div = document.querySelector(".cluenotes");
+  div.appendChild(button);
+  const container = document.createElement("div");
+  container.classList.add("instructions-container", "isHidden");
+  div.appendChild(container);
+  const instructionsHeader = document.createElement("div");
+  instructionsHeader.className = "instructionsHeader";
+  const instructionsTitle = document.createElement("div");
+  instructionsTitle.textContent = "instructions";
+  const closebutton = document.createElement("button");
+  closebutton.className = "close-button";
+  closebutton.textContent = `X`;
+  instructionsHeader.appendChild(instructionsTitle);
+  instructionsHeader.appendChild(closebutton);
+  container.appendChild(instructionsHeader);
+  const instructionsBody = document.createElement("div");
+  instructionsBody.className = "instructionsBody";
+  // instructionsBody.setAttribute("style","white-space: pre;")
+  let str = `the idea of cluedo is go from room to room to eliminate people, places and weapons.\r\nroll dice to start game and enter a room.\non each turn, you can select any one suspect & any one weapon. the suggestion will include the room you are in. you can click the accuse button at any time and select a who, what, where to accuse.\nGame ends once you click the check envelope button to check if your accusation was right!!`;
+  instructionsBody.textContent = str;
+  container.appendChild(instructionsBody);
   button.addEventListener("click", () => {
-    document.querySelector(".instructions-container").classList.toggle("isHidden")
-  })
+    document
+      .querySelector(".instructions-container")
+      .classList.toggle("isHidden");
+  });
   closebutton.addEventListener("click", () => {
-    document.querySelector(".instructions-container").classList.toggle("isHidden")
-  })
-}
+    document
+      .querySelector(".instructions-container")
+      .classList.toggle("isHidden");
+  });
+};
 
 const main = () => {
   pickMurderCards();
@@ -686,3 +687,24 @@ const main = () => {
 };
 
 main();
+
+  // console.log(keys)
+  // for (let i = 0; i < keys.length; i++) {
+  //   cards[keys[i]]
+  //     .filter((card) => card !== game.envelope[i])
+  //     .map((item) => game.deck.push(item));
+  // }
+  // let char = cards[keys[0]][Math.floor(Math.random() * (cards.char.length - 1))];
+  // let weapon =
+  //   cards.weapon[Math.floor(Math.random() * (cards.weapon.length - 1))];
+  // let room = cards.room[Math.floor(Math.random() * (cards.room.length - 1))];
+  // game.envelope = [char, weapon, room];
+// cards.char
+//   .filter((card) => card !== char)
+//   .map((item) => game.deck.push(item));
+// cards.weapon
+//   .filter((card) => card !== weapon)
+//   .map((item) => game.deck.push(item));
+// cards.room
+//   .filter((card) => card !== room)
+//   .map((item) => game.deck.push(item));
