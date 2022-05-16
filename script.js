@@ -284,6 +284,7 @@ const confirmSuspect = () => {
   handleClick();
   document.querySelector(".continue-btn").addEventListener("click", nextPlayer);
   document.querySelector(".accuse-btn").addEventListener("click", () => {
+    document.querySelector(".accuse-btn").classList.add("isHidden")
     if (document.querySelectorAll(".wincontainer").length === 0) {
       accuseFinal();
     }
