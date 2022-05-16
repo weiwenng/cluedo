@@ -30,19 +30,18 @@ Glad that I still managed to make a minimum viable product despite the fact that
 
 Note to self, to look for help earlier next time when i get stuck! 
 
-Code and Code Design
-What would I do differently next time?
+## Code and Code Design
+### What would I do differently next time?
 - Start small first & make sure the game code really works! 
 - Make it a habit to console.log consistently so you know that if something went wrong, it’s the last part you just added that is causing this bug
 - Try to have a clear flow & logic before starting & keep thinking of ways to simplify! Dont complicate things
 
-What went well?
+### What went well?
 Initially this was 3 repetitive functions to randomly select the character, weapon and room cards in addition to another 3 functions of filtering & mapping the remaining cards. I realised that i could refactor my code such that it could be done in one for loop.
 
 ![Snippet](https://user-images.githubusercontent.com/103851181/168575141-c6f94463-29bc-4ab7-8d2b-40a7ff15a31b.png)
 
-
-Things I would do the same next time: 
+### Things I would do the same next time: 
 Look through my codes with the mindset to improve consistently
  
 # SEI Post Mortem
