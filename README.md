@@ -45,10 +45,10 @@ Initially this was 3 repetitive functions to randomly select the character, weap
 Look through my codes with the mindset to improve consistently
  
 # SEI Post Mortem
-Habits I used during this unit that helped me: 
+## Habits I used during this unit that helped me: 
 - Took breaks to be refreshed & get back to it! 
 - Broke down my to-do list into mini parts to celebrate small wins 
 - Googled & ask around for help eventually
-Habits that I have during this unit that I can improve on:
+## Habits that I have during this unit that I can improve on:
 - Not looking for help when I get stuck until it's almost too late...
 - I need to comment on my codes more 
