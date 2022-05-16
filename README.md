@@ -35,9 +35,13 @@ Note to self, to look for help earlier next time when i get stuck!
 <img width="956" alt="Process Flow" src="https://user-images.githubusercontent.com/103851181/168554002-464e676d-62b3-4eb1-865a-b68f930449db.png">
 
 ### What would I do differently next time?
-- Start small first & make sure the game code really works! 
+- Should start small first & make sure the game code really works! 
 - Make it a habit to console.log consistently so you know that if something went wrong, it’s the last part you just added that is causing this bug
 - Try to have a clear flow & logic before starting & keep thinking of ways to simplify! Dont complicate things
+
+### Design that I would like to add on & change in future:
+- Ensure that if i add more cards to the array / add more people to the game, the code (JavaScript & CSS) should be flexible enough to handle (in terms of distributing decks / next player scenarios) 
+- Make it a board game style
 
 ### What went well?
 Initially this was 3 repetitive functions to randomly select the character, weapon and room cards in addition to another 3 functions of filtering & mapping the remaining cards. I realised that i could refactor my code such that it could be done in one for loop.
