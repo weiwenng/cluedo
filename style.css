@@ -1,13 +1,18 @@
 body {
-    font-family: "Special Elite", georgia, serif;
+  font-family: "Special Elite", georgia, serif;
   border: 1px dashed purple;
   background-color: rgba(14, 14, 87, 0.476);
 }
 
-h1, h3 {
+h1,
+h3 {
   text-align: center;
 }
 
+.instructions-btn {
+  justify-content: center;
+  align-items: center;
+}
 .container {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -27,7 +32,7 @@ h1, h3 {
   grid-area: cluenotes;
   text-align: center;
   justify-content: center;
-  font-size: 0.8rem
+  font-size: 0.8rem;
 }
 
 .cardsOnHand {
@@ -51,9 +56,8 @@ h1, h3 {
 }
 
 .wincontainer {
-    grid-area: wincontainer;
-  }
-  
+  grid-area: wincontainer;
+}
 
 .cluenotes.h5 {
   width: 15rem;
@@ -76,8 +80,8 @@ h1, h3 {
 }
 
 .wincontainer {
-    display: flex;
-    justify-content: left;
+  display: flex;
+  justify-content: left;
   text-align: center;
   width: 10vw;
 }
@@ -141,9 +145,12 @@ h5 {
   display: none;
 }
 
+h4 {
+    margin: 0.5rem 0.5rem;
+}
 h6 {
-    margin: 0rem 0.5rem;
-    font-size: 0.8rem;
+  margin: 0rem 0.5rem;
+  font-size: 0.8rem;
 }
 
 p {
@@ -171,4 +178,39 @@ p:focus {
 
 .strikethrough {
   text-decoration: 0.2em solid red line-through;
+}
+
+
+.instructions-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*perfectly center*/
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 60vw;
+    max-width: 80%;
+}
+
+.instructionsHeader {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed black;
+}
+
+.instructionsHeader.close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-weight: bold;
+}
+
+.instructionsBody {
+    padding: 10px 15px;
+
 }

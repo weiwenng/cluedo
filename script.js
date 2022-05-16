@@ -636,12 +636,46 @@ const clueCards = (element) => {
 const clueNotes = () => {
   const div = document.createElement("div");
   div.classList.add("cluenotes");
-  div.textContent = "keep track here!"
   document.querySelector(".container").appendChild(div);
+  instructions()
+  const notesTitle = document.createElement("h4")
+  notesTitle.textContent = "keep track here!"
+  div.appendChild(notesTitle)
   clueCards("char");
   clueCards("weapon");
   clueCards("room");
 };
+
+const instructions = () => {
+  const button = document.createElement("button")
+  button.className = "instructions-btn"
+  button.textContent = "Instructions"
+  const div = document.querySelector(".cluenotes")
+  div.appendChild(button)
+  const container = document.createElement("div")
+  container.classList.add("instructions-container", "isHidden")
+  div.appendChild(container)
+  const instructionsHeader = document.createElement("div")
+  instructionsHeader.className = "instructionsHeader"
+  const instructionsTitle = document.createElement("div")
+  instructionsTitle.textContent = "instructions"
+  const closebutton = document.createElement("button")
+  closebutton.className = "close-button"
+  closebutton.textContent = `X`
+  instructionsHeader.appendChild(instructionsTitle)
+  instructionsHeader.appendChild(closebutton)
+  container.appendChild(instructionsHeader)
+  const instructionsBody = document.createElement("div")
+  instructionsBody.className = "instructionsBody"
+  instructionsBody.textContent = "the idea of cluedo is go from room to room to eliminate people, places and weapons. roll dice to start game and enter a room. on each turn, you can select any one suspect & any one weapon. the suggestion will include the room you are in. you can click the accuse button at any time and select a who, what, where to accuse. Game ends once you click the check envelope button to check if your accusation was right!!"
+  container.appendChild(instructionsBody)
+  button.addEventListener("click", () => {
+    document.querySelector(".instructions-container").classList.toggle("isHidden")
+  })
+  closebutton.addEventListener("click", () => {
+    document.querySelector(".instructions-container").classList.toggle("isHidden")
+  })
+}
 
 const main = () => {
   pickMurderCards();
