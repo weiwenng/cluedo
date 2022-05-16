@@ -1,6 +1,6 @@
 const game = {
   cards: {
-    char: ["red", "green", "mustard"], //, "plum", "peacock", "white"],
+    char: ["Miss Scarlett", "Mr Green", "Colonel Mustard"], //, "plum", "peacock", "white"],
     weapon: ["candle-stick", "dagger", "leadpipe"], //, "leadpipe", "revolver", "rope", "wrench"],
     room: ["kitchen", "hall", "study"], //, "lounge","library","diningroom"],
   },
